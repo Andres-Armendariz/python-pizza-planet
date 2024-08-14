@@ -2,7 +2,7 @@ import pytest
 from ..utils.functions import get_random_price, get_random_string
 
 
-def beverage_mock() -> dict:
+def beverage_mock():
     return {
         'name': get_random_string(),
         'price': get_random_price(10, 20)
@@ -10,28 +10,28 @@ def beverage_mock() -> dict:
 
 
 @pytest.fixture
-def beverage_uri() -> str:
+def beverage_uri():
     return '/beverage/'
 
 
 @pytest.fixture
-def beverage() -> dict:
+def beverage():
     return beverage_mock()
 
 
 @pytest.fixture
-def beverages() -> list:
+def beverages():
     return [beverage_mock() for _ in range(5)]
 
 
 @pytest.fixture
-def create_beverage(client, beverage_uri) -> dict:
+def create_beverage(client, beverage_uri):
     response = client.post(beverage_uri, json=beverage_mock())
     return response
 
 
 @pytest.fixture
-def create_beverages(client, beverage_uri) -> list:
+def create_beverages(client, beverage_uri):
     beverages = []
     for _ in range(10):
         new_beverage = client.post(beverage_uri, json=beverage_mock())
