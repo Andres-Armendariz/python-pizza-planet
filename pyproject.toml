@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "python-pizza-planet"
 version = "0.1.0"
-description = ""
+description = "Excercise - University_1"
 authors = ["Andres-Armendariz <andres.armendariz@ioet.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = "=3.8.12"
 alembic = "1.7.5"
 attrs = "21.4.0"
 autopep8 = "1.6.0"

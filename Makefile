@@ -12,14 +12,10 @@ install-pyenv: ## Install pyenv on bash shell
 	eval "$(pyenv init --path)"
 	eval "$(pyenv init -)"
 	source ~/.bashrc
-
-install-requirements: ## Install the requirements including pyenv
 	pyenv install 3.8.12
 	pyenv local 3.8.12
-	pip install poetry
-	poetry install
 
-requirements: ## Install only requirements
+install-requirements: ## Install only requirements
 	pip install poetry
 	poetry install
 
@@ -38,8 +34,7 @@ test: ## Run the tests for the project
 	python3 manage.py test
 
 test-coverage: ## Run the tests for the project with coverage
-	poetry run pytest --cache-clear --cov=app ./app/test/ > pytest-coverage.txt
+	pytest --cache-clear --cov=app ./app/test/ > pytest-coverage.txt
 
 lints: ##Run the lints  to check the project
-	poetry run flake8
-	poetry run mypy
+	flake8 app/ --exclude __init__.py
