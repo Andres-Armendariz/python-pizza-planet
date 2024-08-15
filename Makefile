@@ -1,4 +1,4 @@
-ALL = .
+ALL = app/
 
 help: ## Show this help message.
 	@echo 'Usage:'
@@ -24,6 +24,11 @@ start-db: ## Start database for first time
 	python3 manage.py db migrate
 	python3 manage.py db upgrade
 
+restore-db: ##Restore the databse by deleting and recreating it
+	rm -f pizza.sqlite
+	rm -rf migrations
+	@${MAKE} start-db
+
 create-venv: ## Create the virtual environment
 	python3 -m venv venv
 
@@ -37,4 +42,4 @@ test-coverage: ## Run the tests for the project with coverage
 	pytest --cache-clear --cov=app ./app/test/ > pytest-coverage.txt
 
 lints: ##Run the lints  to check the project
-	flake8 app/ --exclude __init__.py
+	flake8 ${ALL}
