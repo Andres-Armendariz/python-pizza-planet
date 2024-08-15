@@ -83,9 +83,9 @@ class OrderManager(BaseManager):
                 ingredient_id=ingredient._id,
                 ingredient_price=ingredient.price
             )
-            for ingredient in ingredients)
+                for ingredient in ingredients)
         )
-        cls.session.add.all(
+        cls.session.add_all(
             (OrderDetail(
                 order_id=new_order._id,
                 beverage_id=beverage._id,

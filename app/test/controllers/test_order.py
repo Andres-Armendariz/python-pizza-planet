@@ -1,6 +1,9 @@
 import pytest
-from app.controllers import (IngredientController, OrderController,
-                             SizeController)
+from app.controllers import (
+    IngredientController, 
+    OrderController,
+    SizeController
+)
 from app.controllers.base import BaseController
 from app.test.utils.functions import get_random_choice, shuffle_list
 
