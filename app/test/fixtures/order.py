@@ -1,7 +1,9 @@
 import pytest
 
-from ..utils.functions import (shuffle_list, get_random_sequence,
-                               get_random_string)
+from ..utils.functions import (
+    shuffle_list, get_random_sequence,
+    get_random_string
+)
 
 
 def client_data_mock() -> dict:
@@ -24,13 +26,15 @@ def client_data():
 
 
 @pytest.fixture
-def order(create_ingredients, create_size, client_data) -> dict:
-    ingredients = [ingredient.get('_id') for ingredient in create_ingredients]
+def order(create_ingredients, create_size, client_data, create_beverages) -> dict:
+    ingredients = [ingredient.get("_id") for ingredient in create_ingredients]
+    beverages = [beverage.get("_id") for beverage in create_beverages]
     size_id = create_size.get('_id')
     return {
         **client_data_mock(),
         'ingredients': ingredients,
-        'size_id': size_id
+        'size_id': size_id,
+        "beverages": beverages,
     }
 
 
@@ -47,3 +51,9 @@ def create_orders(client, order_uri, create_ingredients, create_sizes) -> list:
         })
         orders.append(new_order)
     return orders
+
+
+@pytest.fixture
+def create_order(client, order_uri, order) -> dict:
+    response = client.post(order_uri, json=order)
+    return response
