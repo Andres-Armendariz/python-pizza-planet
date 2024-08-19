@@ -24,6 +24,9 @@ start-db: ## Start database for first time
 	python3 manage.py db migrate
 	python3 manage.py db upgrade
 
+populate-db: ## Populate database con fake data
+	python3 manage.py populate
+
 restore-db: ##Restore the databse by deleting and recreating it
 	rm -f pizza.sqlite
 	rm -rf migrations
