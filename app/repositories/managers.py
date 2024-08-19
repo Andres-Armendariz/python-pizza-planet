@@ -133,7 +133,6 @@ class ReportManager:
 
     @classmethod
     def get_highest_revenue_by_month(cls):
-
         revenue = (
             cls.session.query(
                 extract("month", Order.date).label("month"),

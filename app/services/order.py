@@ -1,6 +1,5 @@
 from app.common.http_methods import GET, POST
 from flask import Blueprint, jsonify, request
-
 from ..controllers import OrderController
 
 order = Blueprint('order', __name__)
